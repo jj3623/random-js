@@ -12,3 +12,7 @@ c.init = function init(width = 20, height = 20) {
   c.checks = [];
   
   
+  for(let x=0; x<width; x++) {
+    for(let y=0; y<height; y++) {
+      let check = document.createElement('input');
+      check.type =
