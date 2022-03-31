@@ -81,4 +81,8 @@ c.box = function box(x1, y1, x2, y2) {
   if(x1 < 1 || x1 >= c.width || y1 < 1 || y1 >= c.height || x2 < 1 || x2 >= c.width || y2 < 1 || y2 >= c.height) throw RangeError('Invalid coordinates');
   
   for(let x=x1; x<x2; x++) {
-    
+    for(let y=y1; y<y2; y++) {
+      c.checks[x][y].checked = (x === y); //probably not gonna work
+    }
+  }
+}
