@@ -5,6 +5,13 @@ nodes.maps = {};
 nodes.maps.ips = {};
 nodes.maps.names = {};
 
+nodes.validateIP = function validateIP(ip) {
+  if(typeof ip !== 'string') throw TypeError('Arguements invalid');
+  
+  let regex = /([0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.([0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.([0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.([0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$/m;
+  return ip.match(regex);
+}
+
 nodes.getNextId = function getNextId() {
   return nodes.nextId;
 }
@@ -15,4 +22,4 @@ nodes.getCount = function getCount() {
 }
 
 nodes.exists = function exists(id) {
-  
+  if(typeof id !== 'number') throw Tye
