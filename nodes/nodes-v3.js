@@ -44,6 +44,10 @@ net.create = function create(type, name) {
     int.con.ip = '0.0.0.0';
     int.con.name = '';
   }
+  
+  net.nodes[node.id] = node;
+  net.nextId++;
+  return node.id;
 }
 
 net.remove = function remove(id) {
