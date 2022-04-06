@@ -23,48 +23,43 @@ net.create = function create(type, name) {
   node.id = net.nextId;
   node.type = type;
   node.name = name;
-  node.gw = {};
-  node.gw.id = -1;
-  node.gw.ip = '0.0.0.0';
   node.ints = {};
-  let intCount = 0;
+  let intCount;
   
   switch(type) {
-    case 'pc':
-      intCount = 1;
-    break;
-    
-    case 'switch':
-      intCount = 12;
-    break;
-    
-    case 'router':
-      intCount = 4;
-    break;
+    case 'pc': intCount = 1; break;
+    case 'switch': intCount = 12; break;
+    case 'router': intCount = 4; break;
   }
   
   for(let i=0; i<intCount; i++) {
     node.ints[i] = {};
-    node.ints[i].id = i;
-    node.ints[i].name = 'ethernet' + i;
-    node.ints[i].ip = '0.0.0.0';
-    node.ints[i].con = {};
-    node.ints[i].con.con = false;
-    node.ints[i].con.id = -1;
-    node.ints[i].con.ip = '0.0.0.0';
+    let int = node.ints[i];
+    int.id = i;
+    int.ip = '0.0.0.0';
+    int.name = 'ethernet' + i;
+    int.con = {};
+    int.con.con = false;
+    int.con.id = -1;
+    int.con.ip = '0.0.0.0';
+    int.con.name = '';
   }
-  
-  net.nodes[net.nextId] = node;
-  net.nextId++;
-  return node.id;
 }
 
 net.remove = function remove(id) {
   if(typeof id !== 'number') throw TypeError('Arguements invalid');
-  if(!net.exists(id)) throw ReferenceError('Unkown node');
+  if(!net.exists(id)) throw ReferenceError('Unknown node');
   
   let node = net.nodes[id];
-  for(let i=0; i<Object.keys(node.ints).length; i++) {
+  for(let i=0; i<node.ints.length; i++) {
     let int = node.ints[i];
     if(int.con.con) {
-      nodes.
+      let n = net.nodes[int.con.id];
+      n.con.con = false;
+      n.con.id = -1;
+      n.con.ip = '0.0.0.0';
+      n.con.name = '';
+    }
+  }
+  delete net.nodes[id];
+}
