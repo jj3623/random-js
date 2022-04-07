@@ -15,6 +15,7 @@ net.create = function create(name) {
   node.id = net.nextId;
   node.name = name;
   node.ints = {};
+  node.routes = {};
   
   net.nodes[node.id] = node;
   net.nextId++;
@@ -26,4 +27,5 @@ net.remove = function remove(id) {
   if(!net.exists(id)) throw ReferenceError('Unknown node');
   
   let node = net.nodes[id];
-  for(let i=0; i<)
+  for(let i=0; i<Object.keys(node.ints); i++) {
+    let n = net.nodes[node.ints[i].conId];
