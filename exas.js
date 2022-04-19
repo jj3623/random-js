@@ -7,5 +7,16 @@ class Host {
     
     let id = iId;
     let name = iName;
+    let length = iLength;
+    let width = iWidth;
+    let spaces = new Array(length);
+    for(let i=0; i<length; i++) {
+      spaces[i] = new Array(width);
+    }
+    let links = {};
+    
+    this.getId = function getId() {
+      return id;
+    }
   }
 }
