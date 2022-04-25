@@ -1,0 +1,9 @@
+drives = {};
+drives.perms = {};
+drives.perms.global = {};
+drives.perms.global[0] = 'Global None';
+drives.perms.global[1] = 'Global User';
+drives.perms.global[2] = 'Global Administrator';
+drives.oerms.global[3] = 'Global Operator';
+drives.perms.drives = {};
+drives.perms/drives[0] = 'Drive None';
